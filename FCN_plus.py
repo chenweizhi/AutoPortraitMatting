@@ -155,8 +155,8 @@ def main(argv=None):
     #tf.image_summary("input_image", image, max_images=2)
     #tf.image_summary("ground_truth", tf.cast(annotation, tf.uint8), max_images=2)
     #tf.image_summary("pred_annotation", tf.cast(pred_annotation, tf.uint8), max_images=2)
-    loss = tf.reduce_mean((tf.nn.sparse_softmax_cross_entropy_with_logits(logits,
-                                                                          tf.squeeze(annotation, squeeze_dims=[3]),
+    loss = tf.reduce_mean((tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,
+                                                                          labels=tf.squeeze(annotation, squeeze_dims=[3]),
                                                                           name="entropy")))
     #tf.scalar_summary("entropy", loss)
 
@@ -292,5 +292,5 @@ def save_alpha_img(org, mat, name):
     misc.imsave(name + '.png', amat)
 
 if __name__ == "__main__":
-    #tf.app.run()
-    pred()
+    tf.app.run()
+    #pred()
